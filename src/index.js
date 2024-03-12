@@ -1,3 +1,6 @@
+import './styles/index.css';
+import { initialCards } from './utils/cards';
+
 // темплейт карточки
 const cardTemplate = document.querySelector('#card-template').content;
 // DOM узлы
