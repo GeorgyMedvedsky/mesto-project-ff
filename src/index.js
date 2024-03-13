@@ -1,35 +1,19 @@
 import './styles/index.css';
+import { createCard } from './components/Card';
 import { initialCards } from './utils/cards';
+import { showModal, modalTypeEdit, modalTypeNewCard } from './components/Modal';
 
-// темплейт карточки
-const cardTemplate = document.querySelector('#card-template').content;
-// DOM узлы
+// DOM узлы / кнопки
 const cardsContainer = document.querySelector('.places__list');
-// функция создания карточки
-function createCard(cardData, callback) {
-    // создать клон карточки
-    const newCard = cardTemplate.querySelector('.card').cloneNode(true);
+const editButton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
 
-    // найти элементы созданной карточки
-    const cardImage = newCard.querySelector('.card__image');
-    const cardName = newCard.querySelector('.card__title');
-    const deleteCardBtn = newCard.querySelector('.card__delete-button');
-
-    // наполнить новую карточку содержимым
-    cardImage.src = cardData.link;
-    cardName.textContent = cardData.name;
-    deleteCardBtn.addEventListener('click', callback);
-    
-    // вернуть готовую карточку
-    return newCard;
-}
-// функция удаления карточки
-function deleteCard(evt) {
-    evt.target.closest('.card').remove();
-}
-
-// вывод карточек на страницу
+// Отобразить карточки при загрузке страницы
 initialCards.forEach(card => {
-    const newCard = createCard(card, deleteCard);
+    const newCard = createCard(card);
     cardsContainer.append(newCard);
 });
+
+// Установить обработчики на кнопки
+editButton.addEventListener('click', () => showModal(modalTypeEdit));
+addButton.addEventListener('click', () => showModal(modalTypeNewCard));

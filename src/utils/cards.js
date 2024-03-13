@@ -1,3 +1,11 @@
+/** Объект данных карточки
+ * @typedef {Object} Card
+ * @property {string} name - название карточки
+ * @property {string} link - ссылка на изображение
+ */
+/** Массив карточек
+ * @type {Array <Card>}
+ */
 export const initialCards = [
     {
       name: "Архыз",
