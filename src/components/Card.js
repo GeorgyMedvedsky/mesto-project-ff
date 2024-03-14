@@ -1,6 +1,7 @@
+import { getElement } from "../utils/utils";
 import { showModal, modalTypeImage, modalContentImage, modalContentTitle } from "./Modal";
 
-const cardTemplate = document.querySelector('#card-template').content;
+const cardTemplate = getElement('#card-template').content;
 
 /** Объект данных карточки
  * @typedef {Object} CardData
@@ -14,13 +15,13 @@ const cardTemplate = document.querySelector('#card-template').content;
 export function createCard({link, name}) {
 
     // создать копию
-    const newCard = cardTemplate.querySelector('.card').cloneNode(true);
+    const newCard = getElement('.card', cardTemplate).cloneNode(true);
     
     // найти все элементы
-    const cardImage = newCard.querySelector('.card__image');
-    const cardName = newCard.querySelector('.card__title');
-    const deleteBtn = newCard.querySelector('.card__delete-button');
-    const likeBtn = newCard.querySelector('.card__like-button');
+    const cardImage = getElement('.card__image', newCard);
+    const cardName = getElement('.card__title', newCard);
+    const deleteBtn = getElement('.card__delete-button', newCard);
+    const likeBtn = getElement('.card__like-button', newCard);
 
     // наполнить карточку содержимым
     cardImage.src = link;

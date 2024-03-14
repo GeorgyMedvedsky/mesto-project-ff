@@ -1,10 +1,12 @@
+import { getElement } from "../utils/utils";
+
 // Модальные окна и их компоненты
 const modals = Array.from(document.querySelectorAll('.popup'));
-export const modalTypeEdit = document.querySelector('.popup_type_edit');
-export const modalTypeNewCard = document.querySelector('.popup_type_new-card');
-export const modalTypeImage = document.querySelector('.popup_type_image');
-export const modalContentImage = modalTypeImage.querySelector('.popup__image');
-export const modalContentTitle = modalTypeImage.querySelector('.popup__caption');
+export const modalTypeEdit = getElement('.popup_type_edit');
+export const modalTypeNewCard = getElement('.popup_type_new-card');
+export const modalTypeImage = getElement('.popup_type_image');
+export const modalContentImage = getElement('.popup__image', modalTypeImage);
+export const modalContentTitle = getElement('.popup__caption', modalTypeImage);
 
 /** Открывает модальное окно
  * @param {HTMLElement} modal - тип модального окна
@@ -17,7 +19,7 @@ export function showModal(modal) {
 /** Скрывает модальное окно
  * @param {HTMLElement} modal - тип модального окна
  */
-function hideModal(modal) {
+export function hideModal(modal) {
     modal.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', hideModalByEsc);
 }
@@ -26,7 +28,7 @@ function hideModal(modal) {
  * @param {Event} evt - объект события
  */
 function hideModalByEsc(evt) {
-    const activeModal = document.querySelector('.popup_is-opened');
+    const activeModal = getElement('.popup_is-opened');
     if(evt.key === `Escape`) {
         hideModal(activeModal);
     }
