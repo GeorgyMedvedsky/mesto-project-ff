@@ -11,7 +11,7 @@ import { showModal } from "./modal";
  * @param {CardData} cardData - данные карточки
  * @returns {HTMLElement} - готовая карточка
  */
-export function createCard({link, name}, likeHandler) {
+export function createCard({link, name}) {
     // Cоздать копию по шаблону
     const newCard = getElement('.card', cardTemplate).cloneNode(true);
     
@@ -28,7 +28,7 @@ export function createCard({link, name}, likeHandler) {
     // Добавить обработчики
     deleteBtn.addEventListener('click', deleteCard);
     cardImage.addEventListener('click', () => showImage(cardImage.src, cardName.textContent));
-    likeBtn.addEventListener('click', likeHandler);
+    likeBtn.addEventListener('click', handleLike);
     
     // Вернуть готовую карточку
     return newCard;
@@ -54,6 +54,6 @@ function showImage(image, title) {
 /** Переключает кнопку лайка у карточки
  * @param {Event} evt - объект события
  */
-export function handleLike(evt) {
+function handleLike(evt) {
     evt.target.classList.toggle('card__like-button_is-active');
 }

@@ -1,4 +1,6 @@
 import { forms, profileName, profileDescription } from "../utils/elements";
+import { renderCard } from "../utils/utils";
+import { createCard } from "./card";
 import { hideModal } from "./modal";
 
 
@@ -27,7 +29,7 @@ export function updateForm(form) {
  * @param {Function} renderFunc - функция отрисовки карточки
  * @param {Function} createFunc - функция создания карточки
  */
-export function handleFormSubmit(evt, form, renderFunc, createFunc) {
+export function handleFormSubmit(evt, form) {
     // Отменить стандартную отправку формы
     evt.preventDefault();
 
@@ -50,7 +52,7 @@ export function handleFormSubmit(evt, form, renderFunc, createFunc) {
                 link: form.link.value,
                 name: form.placeName.value
             };
-            renderFunc(createFunc(cardData));
+            renderCard(createCard(cardData));
         }
         default: break;
     }

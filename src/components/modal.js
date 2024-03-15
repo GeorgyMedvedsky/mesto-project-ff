@@ -29,6 +29,7 @@ function hideModalByEsc(evt) {
 
 // Установить логику закрытия каждому модальному окну
 modals.forEach(modal => {
+    modal.classList.add('popup_is-animated');
     modal.addEventListener('click', (evt) => {
         if(evt.target.classList.contains('popup__close')) hideModal(modal);
         if(evt.target.classList.contains('popup_is-opened')) hideModal(modal);
