@@ -1,12 +1,5 @@
+import { modals } from "../utils/elements";
 import { getElement } from "../utils/utils";
-
-// Модальные окна и их компоненты
-const modals = Array.from(document.querySelectorAll('.popup'));
-export const modalTypeEdit = getElement('.popup_type_edit');
-export const modalTypeNewCard = getElement('.popup_type_new-card');
-export const modalTypeImage = getElement('.popup_type_image');
-export const modalContentImage = getElement('.popup__image', modalTypeImage);
-export const modalContentTitle = getElement('.popup__caption', modalTypeImage);
 
 /** Открывает модальное окно
  * @param {HTMLElement} modal - тип модального окна

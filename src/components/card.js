@@ -1,7 +1,6 @@
+import { cardTemplate, modalContent, modalTypes } from "../utils/elements";
 import { getElement } from "../utils/utils";
-import { showModal, modalTypeImage, modalContentImage, modalContentTitle } from "./Modal";
-
-const cardTemplate = getElement('#card-template').content;
+import { showModal } from "./modal";
 
 /** Объект данных карточки
  * @typedef {Object} CardData
@@ -13,31 +12,30 @@ const cardTemplate = getElement('#card-template').content;
  * @returns {HTMLElement} - готовая карточка
  */
 export function createCard({link, name}) {
-
-    // создать копию
+    // Cоздать копию по шаблону
     const newCard = getElement('.card', cardTemplate).cloneNode(true);
     
-    // найти все элементы
+    // Найти все элементы новой карточки
     const cardImage = getElement('.card__image', newCard);
     const cardName = getElement('.card__title', newCard);
     const deleteBtn = getElement('.card__delete-button', newCard);
     const likeBtn = getElement('.card__like-button', newCard);
 
-    // наполнить карточку содержимым
+    // Наполнить карточку содержимым
     cardImage.src = link;
     cardName.textContent = name;
 
-    // добавить обработчики
-    // удалить карточку
+    // Добавить обработчики:
+    // Удалить карточку
     deleteBtn.addEventListener('click', deleteCard);
-    // открыть полноразмерное изображение
+    // Открыть полноразмерное изображение
     cardImage.addEventListener('click', () => {
-        modalContentImage.src = cardImage.src;
-        modalContentTitle.textContent = cardName.textContent;
-        showModal(modalTypeImage);
+        modalContent.image.src = cardImage.src;
+        modalContent.title.textContent = cardName.textContent;
+        showModal(modalTypes.showImage);
     });
     
-    // вернуть готовую карточку
+    // Вернуть готовую карточку
     return newCard;
 }
 

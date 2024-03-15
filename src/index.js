@@ -1,28 +1,28 @@
 import './styles/index.css';
-import { createCard } from './components/Card';
+import { createCard } from './components/card';
 import { initialCards } from './utils/cards';
-import { showModal, hideModal, modalTypeEdit, modalTypeNewCard } from './components/Modal';
-import { getElement } from './utils/utils';
-import { profileForm, updateProfileForm, handleProfileFormSubmit } from './components/Profile';
+import { showModal } from './components/modal';
+import { getElement, renderCard } from './utils/utils';
+import { updateForm, handleFormSubmit } from './components/form';
+import { forms, modalTypes } from './utils/elements';
 
-// DOM узлы / кнопки
-const cardsContainer = getElement('.places__list');
+// Кнопки
 const editButton = getElement('.profile__edit-button');
 const addButton = getElement('.profile__add-button');
 
 // Отобразить карточки при загрузке страницы
-initialCards.forEach(card => {
-    const newCard = createCard(card);
-    cardsContainer.append(newCard);
+initialCards.forEach(card => renderCard(createCard(card)));
+
+// Установить обработчики событий на кнопки
+editButton.addEventListener('click', () => {
+    updateForm(forms.editProfileForm)
+    showModal(modalTypes.editProfile);
+});
+addButton.addEventListener('click', () => {
+    updateForm(forms.newPlaceForm)
+    showModal(modalTypes.addCard);
 });
 
-// Установить обработчики событий на странице
-editButton.addEventListener('click', () => {
-    updateProfileForm();
-    showModal(modalTypeEdit);
-});
-addButton.addEventListener('click', () => showModal(modalTypeNewCard));
-profileForm.addEventListener('submit', (evt) => {
-    handleProfileFormSubmit(evt);
-    hideModal(modalTypeEdit);
-});
+// Установить обработчики событий на все формы
+forms.editProfileForm.addEventListener('submit', (evt) => handleFormSubmit(evt, forms.editProfileForm));
+forms.newPlaceForm.addEventListener('submit', (evt) => handleFormSubmit(evt, forms.newPlaceForm, renderCard, createCard));
