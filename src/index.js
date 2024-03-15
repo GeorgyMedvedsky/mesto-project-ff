@@ -1,5 +1,5 @@
 import './styles/index.css';
-import { createCard } from './components/card';
+import { createCard, handleLike } from './components/card';
 import { initialCards } from './utils/cards';
 import { showModal } from './components/modal';
 import { getElement, renderCard } from './utils/utils';
@@ -11,7 +11,7 @@ const editButton = getElement('.profile__edit-button');
 const addButton = getElement('.profile__add-button');
 
 // Отобразить карточки при загрузке страницы
-initialCards.forEach(card => renderCard(createCard(card)));
+initialCards.forEach(card => renderCard(createCard(card, handleLike)));
 
 // Установить обработчики событий на кнопки
 editButton.addEventListener('click', () => {
