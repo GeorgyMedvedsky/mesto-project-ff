@@ -8,15 +8,11 @@ import { hideModal } from "./modal";
  * @param {HTMLElement} form - обрабатываемая форма
  */
 export function updateForm(form) {
+    form.reset();
     switch(form) {
         case forms.editProfileForm: {
             forms.editProfileForm.name.value = profileName.textContent;
             forms.editProfileForm.description.value = profileDescription.textContent;
-            break;
-        }
-        case forms.newPlaceForm: {
-            forms.newPlaceForm.placeName.value = '';
-            forms.newPlaceForm.link.value = '';
             break;
         }
         default: break;

@@ -5,6 +5,7 @@ import { showModal } from './components/modal';
 import { getElement, renderCard } from './utils/utils';
 import { updateForm, handleFormSubmit } from './components/form';
 import { forms, modalTypes } from './utils/elements';
+import { enableValidation } from './components/validation';
 
 // Кнопки
 const editButton = getElement('.profile__edit-button');
@@ -15,14 +16,23 @@ initialCards.forEach(card => renderCard(createCard(card)));
 
 // Установить обработчики событий на кнопки
 editButton.addEventListener('click', () => {
-    updateForm(forms.editProfileForm)
+    updateForm(forms.editProfileForm);
     showModal(modalTypes.editProfile);
 });
 addButton.addEventListener('click', () => {
-    updateForm(forms.newPlaceForm)
+    updateForm(forms.newPlaceForm);
     showModal(modalTypes.addCard);
 });
 
 // Установить обработчики событий на все формы
 forms.editProfileForm.addEventListener('submit', (evt) => handleFormSubmit(evt, forms.editProfileForm));
 forms.newPlaceForm.addEventListener('submit', (evt) => handleFormSubmit(evt, forms.newPlaceForm));
+
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+});
