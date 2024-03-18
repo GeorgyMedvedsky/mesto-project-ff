@@ -13,8 +13,17 @@ const hideInputError = (formElement, inputElement, {inputErrorClass, errorClass}
 };
 
 const checkInputValidity = (formElement, inputElement, {...other}) => {
-    if(!inputElement.validity.valid) showInputError(formElement, inputElement, inputElement.validationMessage, {...other})
-    else hideInputError(formElement, inputElement, {...other});
+    if(inputElement.validity.patternMismatch) {
+        inputElement.setCustomValidity(inputElement.dataset.errorMessage)
+    } else {
+        inputElement.setCustomValidity('')
+    }
+
+    if(!inputElement.validity.valid) {
+        showInputError(formElement, inputElement, inputElement.validationMessage, {...other})
+    } else {
+        hideInputError(formElement, inputElement, {...other});
+    }
 };
 
 const hasInvalidInput = (inputList) => {
