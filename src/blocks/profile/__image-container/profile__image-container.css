@@ -1,0 +1,19 @@
+.profile__image-container {
+    margin: 0 29px 0 0;
+    z-index: 1;
+}
+.profile__image-container:hover {
+    background: url('../../../images/edit-avatar-icon.svg') center no-repeat;
+}
+
+@media screen and (max-width: 740px) {
+    .profile__image-container {
+      margin: 0 10px 0 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .profile__image-container {
+      margin-right: 0;
+    }
+  }

@@ -69,3 +69,11 @@ export async function removeLike(id) {
         headers: config.headers
     });
 }
+
+export async function updateAvatar(avatar) {
+    return _response(`${config.baseUrl}/users/me/avatar`, {
+        method: 'PATCH',
+        headers: config.headers,
+        body: JSON.stringify({avatar})
+    })
+};
