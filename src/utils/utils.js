@@ -20,3 +20,12 @@ const cardsContainer = getElement('.places__list');
 export function renderCard(card, container = cardsContainer) {
     container.prepend(card);
 }
+
+/** Назначает EventListener
+ * @param {HTMLElement} target - элемент, на который установить обработчик
+ * @param {string} event - название события
+ * @param {Function} callback - функция, выполняемая при наступлении события
+ */
+export function setEventListeners(target, event, callback) {
+    target.addEventListener(event, callback)
+}
